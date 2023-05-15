@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<title>Airline Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Airline Directory</h3>
+	<hr>
+
+	<table class="table table-bordered table-striped">
+		<thead class="table-dark">
+			<tr>
+				<th>Name</th>
+				<th>Short Name</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<!-- button -->
+			<a th:href="@{/airlines/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+				Add Airline
+			</a>
+			<tr th:each="tempAirline : ${airlines}">
+			
+				<td th:text="${tempAirline.name}" />
+				<td th:text="${tempAirline.shortName}" />
+				<td>
+					<a th:href="@{/airlines/showFormForUpdate(airlineId=${tempAirline.id})}"
+						class="btn btn-info btn-sm">
+						Update
+					</a>
+
+					<a th:href="@{/airlines/delete(airlineId=${tempAirline.id})}"
+					   class="btn btn-danger btn-sm"
+					   onclick="if (!(confirm('Are you sure you want to delete this airline? This will also delete all flights by that airline.'))) return false">
+						Delete
+					</a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	<a th:href="@{/admin/overview}">Back to Admin Overview</a>
+</div>
+	
+</body>
+</html>
+
+
+

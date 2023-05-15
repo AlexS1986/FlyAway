@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Save Customer</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3> Customer Directory</h3>
+        <hr>
+        <p class="h4 mb-4">Save Customer</p>
+
+        <form id="customerForm" action="#" th:action="@{/customers/save}"
+              th:object="${customer}" method="POST">
+
+            <!-- Add a hidden form field to handle the update id=0 will create a new entity in DB-->
+            <input type="hidden" th:field="*{id}">
+
+            <input type="text" th:field="*{firstName}" required
+                class="form-control mb-4 w-25" placeholder="First name">
+            <input type="text" th:field="*{lastName}" required
+                   class="form-control mb-4 w-25" placeholder="Last name">
+            <input id="email" type="email" th:field="*{email}" required
+                   class="form-control mb-4 w-25" placeholder="example@company.com">
+            <input id="phoneField" type="tel" th:field="*{phoneNumber}" required
+                   class="form-control mb-4 w-25" placeholder="Phone Number">
+            <button type="submit" class="btn btn-info col-2">Save</button>
+        </form>
+        <a th:href="@{/customers/list}">Back to Customers List</a>
+    </div>
+
+    <script>
+          document.getElementById("customerForm").addEventListener("submit", function(event) {
+            var phoneField = document.getElementById("phoneField");
+            var phoneRegex = /^\d{1,}$/; // Regular expression for 10-digit phone number format
+
+            if (!phoneRegex.test(phoneField.value)) {
+              event.preventDefault(); // Prevent form submission
+              alert("Please enter a valid phone number!");
+            }
+          });
+    </script>
+    <script>
+          document.getElementById("customerForm").addEventListener("submit", function(event) {
+            var emailField = document.getElementById("email");
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+
+            if (!emailRegex.test(emailField.value)) {
+              event.preventDefault(); // Prevent form submission
+              alert("Please enter a valid email address!");
+            }
+          });
+    </script>
+
+</body>
+
+</html>
