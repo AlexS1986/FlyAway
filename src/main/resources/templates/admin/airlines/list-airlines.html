@@ -30,7 +30,7 @@
 		
 		<tbody>
 			<!-- button -->
-			<a th:href="@{/airlines/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+			<a th:href="@{/admin/airlines/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
 				Add Airline
 			</a>
 			<tr th:each="tempAirline : ${airlines}">
@@ -38,12 +38,12 @@
 				<td th:text="${tempAirline.name}" />
 				<td th:text="${tempAirline.shortName}" />
 				<td>
-					<a th:href="@{/airlines/showFormForUpdate(airlineId=${tempAirline.id})}"
+					<a th:href="@{/admin/airlines/showFormForUpdate(airlineId=${tempAirline.id})}"
 						class="btn btn-info btn-sm">
 						Update
 					</a>
 
-					<a th:href="@{/airlines/delete(airlineId=${tempAirline.id})}"
+					<a th:href="@{/admin/airlines/delete(airlineId=${tempAirline.id})}"
 					   class="btn btn-danger btn-sm"
 					   onclick="if (!(confirm('Are you sure you want to delete this airline? This will also delete all flights by that airline.'))) return false">
 						Delete
@@ -52,7 +52,7 @@
 			</tr>
 		</tbody>		
 	</table>
-	<a th:href="@{/admin/overview}">Back to Admin Overview</a>
+	<a th:href="@{/admin/}">Back to Admin Overview</a>
 </div>
 	
 </body>

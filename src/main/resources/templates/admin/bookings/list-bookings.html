@@ -36,7 +36,7 @@
 		</thead>
 		
 		<tbody>
-			<a th:href="@{/bookings/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+			<a th:href="@{/admin/bookings/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
 				Add Booking
 			</a>
 
@@ -52,12 +52,12 @@
 				<td th:text="|${currency} ${#numbers.formatDecimal(tempBooking.numberOfPersons * tempBooking.flight.ticketPrice, 1, 'POINT', 2, 'COMMA')}|">
 
 				<td>
-					<a th:href="@{/bookings/showFormForUpdate(bookingId=${tempBooking.id})}"
+					<a th:href="@{/admin/bookings/showFormForUpdate(bookingId=${tempBooking.id})}"
 					   class="btn btn-info btn-sm">
 						Update
 					</a>
 
-					<a th:href="@{/bookings/delete(bookingId=${tempBooking.id})}"
+					<a th:href="@{/admin/bookings/delete(bookingId=${tempBooking.id})}"
 					   class="btn btn-danger btn-sm"
 					   onclick="if (!(confirm('Are you sure you want to delete this booking?'))) return false">
 						Delete
@@ -67,7 +67,7 @@
 			</tr>
 		</tbody>		
 	</table>
-	<a th:href="@{/admin/overview}">Back to Admin Overview</a>
+	<a th:href="@{/admin/}">Back to Admin Overview</a>
 </div>
 	
 </body>

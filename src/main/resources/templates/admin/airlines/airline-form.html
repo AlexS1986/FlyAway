@@ -18,7 +18,7 @@
         <hr>
         <p class="h4 mb-4">Save Airline</p>
 
-        <form action="#" th:action="@{/airlines/save}"
+        <form action="#" th:action="@{/admin/airlines/save}"
               th:object="${airline}" method="POST">
 
             <!-- Add a hidden form field to handle the update id=0 will create a new entity in DB-->
@@ -30,7 +30,7 @@
                    class="form-control mb-4 w-25" placeholder="Short Name">
             <button type="submit" class="btn btn-info col-2">Save</button>
         </form>
-        <a th:href="@{/airlines/list}">Back to Airlines List</a>
+        <a th:href="@{/admin/airlines/list}">Back to Airlines List</a>
     </div>
 
 </body>

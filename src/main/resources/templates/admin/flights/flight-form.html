@@ -18,7 +18,7 @@
         <hr>
         <p class="h4 mb-4">Save Flight</p>
 
-        <form action="#" th:action="@{/flights/save}"
+        <form action="#" th:action="@{/admin/flights/save}"
               th:object="${flight}" method="POST" onsubmit="return validateAirportSelection()">
 
             <!-- Add a hidden form field to handle the update id=0 will create a new entity in DB-->
@@ -50,7 +50,7 @@
 
             <button type="submit" class="btn btn-info col-2">Save</button>
         </form>
-        <a th:href="@{/flights/list}">Back to Flights List</a>
+        <a th:href="@{/admin/flights/list}">Back to Flights List</a>
     </div>
 
     <script>

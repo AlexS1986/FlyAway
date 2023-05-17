@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <title>Admin Overview</title>
 </head>
@@ -7,11 +7,15 @@
 <h1>Welcome to the Admin Overview</h1>
 
 <ul>
-    <li><a href="/airlines/list">Airlines</a></li>
-    <li><a href="/airports/list">Airports</a></li>
-    <li><a href="/customers/list">Customers</a></li>
-    <li><a href="/flights/list">Flights</a></li>
-    <li><a href="/bookings/list">Bookings</a></li>
+    <li><a th:href="@{/admin/airlines/list}">Airlines</a></li>
+    <li><a th:href="@{/admin/airports/list}">Airports</a></li>
+    <li><a th:href="@{/admin/customers/list}">Customers</a></li>
+    <li><a th:href="@{/admin/flights/list}">Flights</a></li>
+    <li><a th:href="@{/admin/bookings/list}">Bookings</a></li>
 </ul>
+<hr>
+<form action="#", th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
+</form>
 </body>
 </html>
