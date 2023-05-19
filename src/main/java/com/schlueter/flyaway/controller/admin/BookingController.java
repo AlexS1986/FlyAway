@@ -1,18 +1,21 @@
-package com.schlueter.flyaway.controller;
+package com.schlueter.flyaway.controller.admin;
 
-import com.schlueter.flyaway.entity.*;
-import com.schlueter.flyaway.service.*;
+import com.schlueter.flyaway.entity.Booking;
+import com.schlueter.flyaway.entity.Customer;
+import com.schlueter.flyaway.entity.Flight;
+import com.schlueter.flyaway.service.BookingService;
+import com.schlueter.flyaway.service.CustomerService;
+import com.schlueter.flyaway.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.Currency;
 import java.util.List;
 
 @Controller
-@RequestMapping("/bookings")
+@RequestMapping("/admin/bookings")
 public class BookingController {
 
     private FlightService flightService;
@@ -38,7 +41,7 @@ public class BookingController {
         Currency currency = Currency.getInstance("USD");
         theModel.addAttribute("currency", currency);
 
-        return "bookings/list-bookings";
+        return "admin/bookings/list-bookings";
     }
 
     @GetMapping("/showFormForAdd")
@@ -50,7 +53,7 @@ public class BookingController {
         model.addAttribute("flights", flights);
         List<Customer> customers = customerService.findAll();
         model.addAttribute("customers", customers);
-        return "bookings/booking-form";
+        return "admin/bookings/booking-form";
     }
 
     @PostMapping("/save")
@@ -66,13 +69,13 @@ public class BookingController {
         booking.setNumberOfPersons(bookingResponse.getNumberOfPersons());
         bookingService.save(booking);
 
-        return "redirect:/bookings/list";
+        return "redirect:/admin/bookings/list";
     }
 
     @GetMapping("/delete")
     public String deleteBooking(@RequestParam("bookingId") int id) {
         bookingService.deleteById(id);
-        return "redirect:/bookings/list";
+        return "redirect:/admin/bookings/list";
     }
 
     @GetMapping("/showFormForUpdate")
@@ -83,7 +86,7 @@ public class BookingController {
         model.addAttribute("flights", flights);
         List<Customer> customers = customerService.findAll();
         model.addAttribute("customers", customers);
-        return "bookings/booking-form";
+        return "admin/bookings/booking-form";
     }
 
 }

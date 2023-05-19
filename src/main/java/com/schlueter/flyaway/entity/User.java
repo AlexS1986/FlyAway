@@ -1,4 +1,4 @@
-package com.schlueter.flyaway.admin.entity;
+package com.schlueter.flyaway.entity;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.schlueter.flyaway.controller;
+package com.schlueter.flyaway.controller.admin;
 
 public class BookingResponse {
 

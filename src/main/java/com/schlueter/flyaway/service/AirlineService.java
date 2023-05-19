@@ -1,7 +1,6 @@
 package com.schlueter.flyaway.service;
 
 import com.schlueter.flyaway.entity.Airline;
-import com.schlueter.flyaway.entity.Employee;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

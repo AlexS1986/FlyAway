@@ -1,4 +1,4 @@
-package com.schlueter.flyaway.controller;
+package com.schlueter.flyaway.controller.admin;
 
 import com.schlueter.flyaway.entity.Customer;
 import com.schlueter.flyaway.service.CustomerService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/customers")
+@RequestMapping("/admin/customers")
 public class CustomerController {
 
 	// load employee data
@@ -32,35 +32,35 @@ public class CustomerController {
 		// add to the spring model
 		theModel.addAttribute("customers", customers);
 
-		return "customers/list-customers";
+		return "admin/customers/list-customers";
 	}
 
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model model) {
 		Customer customer = new Customer();
 		model.addAttribute("customer", customer);
-		return "customers/customer-form";
+		return "admin/customers/customer-form";
 	}
 
 	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("customerId") int id, Model model) {
 		Customer customer = customerService.findById(id);
 		model.addAttribute("customer", customer);
-		return "customers/customer-form";
+		return "admin/customers/customer-form";
 	}
 
 
 	@PostMapping("/save")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 		customerService.save(customer);
-		return "redirect:/customers/list";
+		return "redirect:/admin/customers/list";
 	}
 
 	@GetMapping("/delete")
 	public String deleteCustomer(@RequestParam("customerId") long id) {
 		customerService.deleteById(id);
 
-		return "redirect:/customers/list";
+		return "redirect:/admin/customers/list";
 	}
 }
 

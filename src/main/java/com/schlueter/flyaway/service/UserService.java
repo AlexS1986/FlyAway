@@ -1,10 +1,9 @@
-package com.schlueter.flyaway.admin.service;
+package com.schlueter.flyaway.service;
 
-import com.schlueter.flyaway.admin.entity.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.schlueter.flyaway.entity.User;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface UserService  extends UserDetailsService {
+public interface UserService   {
     User findByUserName(String userName);
 
     @Transactional

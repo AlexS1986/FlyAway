@@ -1,8 +1,4 @@
-package com.schlueter.flyaway.controller;
-
-import com.schlueter.flyaway.entity.Airline;
-import com.schlueter.flyaway.entity.Airport;
-import jakarta.persistence.*;
+package com.schlueter.flyaway.controller.admin;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

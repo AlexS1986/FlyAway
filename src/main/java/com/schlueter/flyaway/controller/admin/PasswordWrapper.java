@@ -1,12 +1,12 @@
-package com.schlueter.flyaway.admin.controller;
+package com.schlueter.flyaway.controller.admin;
 
-public class Password {
+public class PasswordWrapper {
     private String value;
 
-    public Password() {
+    public PasswordWrapper() {
 
     }
-    public Password(String value) {
+    public PasswordWrapper(String value) {
         this.value = value;
     }
 

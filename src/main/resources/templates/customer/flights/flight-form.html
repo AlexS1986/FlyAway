@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Save Flight</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3> Flight Directory</h3>
+        <hr>
+        <p class="h4 mb-4">Save Flight</p>
+
+        <form action="#" th:action="@{/admin/flights/save}"
+              th:object="${flight}" method="POST" onsubmit="return validateAirportSelection()">
+
+            <!-- Add a hidden form field to handle the update id=0 will create a new entity in DB-->
+            <input type="hidden" th:field="*{id}">
+
+
+            <label for="airline">Select an Airline:</label>
+            <select id="airline" name="airline" th:field="*{airline}" class="form-control mb-4 w-25">
+                <option th:each="airline : ${airlines}" th:value="${airline.id}" th:text="${airline.name}"></option>
+            </select >
+
+            <label for="source">Select a Source Airport:</label>
+            <select id="source" name="source" th:field="*{sourceAirport}" class="form-control mb-4 w-25">
+                <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name}"></option>
+            </select >
+
+            <label for="destination">Select a Destination Airport:</label>
+            <select id="destination" name="source" th:field="*{destinationAirport}" class="form-control mb-4 w-25">
+                <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name}"></option>
+            </select >
+
+            <label for="departureDateTime">Departure Date and Time:</label>
+            <input type="datetime-local" id="departureDateTime" name="departureDateTime" class="form-control mb-4 w-25" th:field="*{departureDateTime}"
+                   th:value="${#temporals.format(flight.departureDateTime, 'dd MMM yyyy hh:mm a')}" />
+
+            <label for="ticketPrice">Ticket Price:</label>
+            <input type="number" id="ticketPrice" name="ticketPrice" class="form-control mb-4 w-25"
+                   step="0.01" pattern="\d+(\.\d{1,2})?" th:field="*{ticketPrice}" />
+
+            <button type="submit" class="btn btn-info col-2">Save</button>
+        </form>
+        <a th:href="@{/admin/flights/list}">Back to Flights List</a>
+    </div>
+
+    <script>
+        function validateAirportSelection() {
+            var sourceAirport = document.getElementById("source").value;
+            var destinationAirport = document.getElementById("destination").value;
+
+            if (sourceAirport === destinationAirport) {
+                alert("Source and destination airports cannot be the same.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+    <!-- Date field does not load content without -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var departureDateTimeInput = document.getElementById("departureDateTime");
+            var now = new Date();
+            var formattedNow = now.toISOString().slice(0, 16); // Format the current date and time as "yyyy-MM-ddThh:mm"
+            departureDateTimeInput.value = formattedNow;
+        });
+    </script>
+</body>
+
+</html>

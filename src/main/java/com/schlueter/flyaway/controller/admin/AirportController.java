@@ -1,8 +1,6 @@
-package com.schlueter.flyaway.controller;
+package com.schlueter.flyaway.controller.admin;
 
-import com.schlueter.flyaway.entity.Airline;
 import com.schlueter.flyaway.entity.Airport;
-import com.schlueter.flyaway.service.AirlineService;
 import com.schlueter.flyaway.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/airports")
+@RequestMapping("/admin/airports")
 public class AirportController {
     private AirportService airportService;
 
@@ -26,33 +24,33 @@ public class AirportController {
     public String getAirports(Model model) {
         List<Airport> airports = airportService.findAll();
         model.addAttribute("airports",airports);
-        return "airports/list-airports";
+        return "admin/airports/list-airports";
     }
 
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model model) {
         Airport airport = new Airport();
         model.addAttribute("airport", airport);
-        return "airports/airport-form";
+        return "admin/airports/airport-form";
     }
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("airportId") int id, Model model) {
         Airport airport = airportService.findById(id);
         model.addAttribute("airport", airport);
-        return "airports/airport-form";
+        return "admin/airports/airport-form";
     }
 
     @PostMapping("/save")
-    public String saveAirline(@ModelAttribute("airport") Airport airport) {
+    public String saveAirport(@ModelAttribute("airport") Airport airport) {
         airportService.save(airport);
 
-        return "redirect:/airports/list";
+        return "redirect:/admin/airports/list";
     }
 
     @GetMapping("/delete")
-    public String deleteAirline(@RequestParam("airportId") long id) {
+    public String deleteAirport(@RequestParam("airportId") long id) {
         airportService.deleteById(id);
-        return "redirect:/airports/list";
+        return "redirect:/admin/airports/list";
     }
 }

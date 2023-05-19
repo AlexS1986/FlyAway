@@ -1,8 +1,7 @@
-package com.schlueter.flyaway.controller;
+package com.schlueter.flyaway.controller.admin;
 
 import com.schlueter.flyaway.entity.Airline;
 import com.schlueter.flyaway.entity.Airport;
-import com.schlueter.flyaway.entity.Employee;
 import com.schlueter.flyaway.entity.Flight;
 import com.schlueter.flyaway.service.AirlineService;
 import com.schlueter.flyaway.service.AirportService;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Currency;
 
 @Controller
-@RequestMapping("/flights")
+@RequestMapping("/admin/flights")
 public class FlightController {
 
     private FlightService flightService;
@@ -42,7 +41,7 @@ public class FlightController {
         theModel.addAttribute("flights", flights);
         theModel.addAttribute("currency", currency);
 
-        return "flights/list-flights";
+        return "admin/flights/list-flights";
     }
 
     @GetMapping("/showFormForAdd")
@@ -54,7 +53,7 @@ public class FlightController {
         model.addAttribute("airlines", airlines);
         List<Airport> airports = airportService.findAll();
         model.addAttribute("airports", airports);
-        return "flights/flight-form";
+        return "admin/flights/flight-form";
     }
 
     @PostMapping("/save")
@@ -72,13 +71,13 @@ public class FlightController {
         flight.setDepartureDateTime(flightResponse.getDepartureDateTime());
         flightService.save(flight);
 
-        return "redirect:/flights/list";
+        return "redirect:/admin/flights/list";
     }
 
     @GetMapping("/delete")
     public String deleteFlight(@RequestParam("flightId") int id) {
         flightService.deleteById(id);
-        return "redirect:/flights/list";
+        return "redirect:/admin/flights/list";
     }
 
     @GetMapping("/showFormForUpdate")
@@ -89,7 +88,7 @@ public class FlightController {
         model.addAttribute("airlines", airlines);
         List<Airport> airports = airportService.findAll();
         model.addAttribute("airports", airports);
-        return "flights/flight-form";
+        return "admin/flights/flight-form";
     }
 
 }
