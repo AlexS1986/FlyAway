@@ -2,8 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `flyaway_directory`;
 USE `flyaway_directory`;
 
 
-DROP TABLE IF EXISTS `flight`;
+
 DROP TABLE IF EXISTS `booking`;
+DROP TABLE IF EXISTS `flight`;
 DROP TABLE IF EXISTS `airport`;
 DROP TABLE IF EXISTS `airline`;
 DROP TABLE IF EXISTS `customer`;
@@ -127,8 +128,6 @@ CREATE TABLE `users` (
 -- Inserting data for table `users`
 --
 -- NOTE: The passwords are encrypted using BCrypt
---
--- A generation tool is avail at: https://www.luv2code.com/generate-bcrypt-password
 --
 -- Default passwords here are: fun123
 --
