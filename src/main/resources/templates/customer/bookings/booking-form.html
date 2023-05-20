@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Save Booking</title>
+</head>
+
+<body>
+    <div class="container">
+        <p class="h4 mb-4">Complete Booking</p>
+
+        <form id="bookingForm" action="#" th:action="@{/customer/bookings/save}"
+              th:object="${booking}" method="POST" >
+
+            <!-- Add a hidden form field to handle the update id=0 will create a new entity in DB-->
+            <input type="hidden" th:field="*{id}">
+
+            <input type="hidden"  name="flight" th:value="${flightId}">
+
+            <!--
+            <label for="customer">Select a Customer:</label>
+            <select id="customer" name="customer" th:field="*{customer}" class="form-control mb-4 w-25">
+                <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.firstName}"></option>
+            </select >
+
+            <label for="flight">Select a Flight:</label>
+            <select id="flight" name="flight" th:field="*{flight}" class="form-control mb-4 w-25">
+                <option th:each="flight : ${flights}" th:value="${flight.id}" th:text="${flight.id}"></option>
+            </select > -->
+
+            <label for="numberOfPersons">Number of Passengers:</label>
+            <input type="number" id="numberOfPersons" name="numberOfPersons" class="form-control mb-4 w-25"
+                   step="1" pattern="\d+" th:field="*{numberOfPersons}" />
+
+
+            <hr>
+            <p>Customer Details</p>
+            <label for="firstName">First name:</label>
+            <input type="text" id="firstName" th:field="*{customerFirstName}" required
+                   class="form-control mb-4 w-25" placeholder="First name">
+
+            <label for="lastName">Last name:</label>
+            <input type="text" id="lastName" th:field="*{customerLastName}" required
+                   class="form-control mb-4 w-25" placeholder="Last name">
+
+            <label for="email">Email:</label>
+            <input id="email" type="email" th:field="*{customerEmail}" required
+                   class="form-control mb-4 w-25" placeholder="example@company.com">
+
+            <label for="phoneNumber">Phone number:</label>
+            <input id="phoneNumber" type="tel" th:field="*{customerPhoneNumber}" required
+                   class="form-control mb-4 w-25" placeholder="Phone Number">
+
+            <label for="creditCardNumber">Credit Card number:</label>
+            <input id="creditCardNumber" type="tel" th:field="*{creditCardNumber}" required
+                   class="form-control mb-4 w-25" placeholder="Credit Card Number">
+
+            <button type="submit" class="btn btn-info col-2">Proceed</button>
+        </form>
+        <a th:href="@{/admin/bookings/list}">Back to Bookings List</a>
+    </div>
+
+
+    <script>
+          document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            var phoneField = document.getElementById("phoneField");
+            var phoneRegex = /^\d{1,}$/;
+
+            if (!phoneRegex.test(phoneField.value)) {
+              event.preventDefault(); // Prevent form submission
+              alert("Please enter a valid phone number!");
+            }
+          });
+    </script>
+    <script>
+          document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            var phoneField = document.getElementById("creditCardNumber");
+            var phoneRegex = /^\d{1,}$/;
+
+            if (!phoneRegex.test(phoneField.value)) {
+              event.preventDefault(); // Prevent form submission
+              alert("Please enter a credit card number!");
+            }
+          });
+    </script>
+    <script>
+          document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            var emailField = document.getElementById("email");
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+
+            if (!emailRegex.test(emailField.value)) {
+              event.preventDefault(); // Prevent form submission
+              alert("Please enter a valid email address!");
+            }
+          });
+    </script>
+</body>
+
+</html>
