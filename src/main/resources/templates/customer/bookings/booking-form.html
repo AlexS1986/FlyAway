@@ -37,7 +37,7 @@
 
             <label for="numberOfPersons">Number of Passengers:</label>
             <input type="number" id="numberOfPersons" name="numberOfPersons" class="form-control mb-4 w-25"
-                   step="1" pattern="\d+" th:field="*{numberOfPersons}" />
+                   step="1" pattern="\d+" min="1" th:field="*{numberOfPersons}" th:value="1"/>
 
 
             <hr>
@@ -64,7 +64,7 @@
 
             <button type="submit" class="btn btn-info col-2">Proceed</button>
         </form>
-        <a th:href="@{/admin/bookings/list}">Back to Bookings List</a>
+        <a th:href="@{/customer/flights/search}">Back to Flight Search</a>
     </div>
 
 

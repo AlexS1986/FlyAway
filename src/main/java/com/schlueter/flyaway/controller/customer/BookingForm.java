@@ -1,16 +1,74 @@
-package com.schlueter.flyaway.controller.admin;
+package com.schlueter.flyaway.controller.customer;
 
-public class BookingResponse {
+public class BookingForm {
 
     private int id;
     private int flight;
-    private int customer;
+
     private int numberOfPersons;
 
-    public BookingResponse(int flight, int customer, int numberOfPersons) {
+    private String customerFirstName;
+
+    private String customerLastName;
+
+    private String customerEmail;
+
+    private Integer customerPhoneNumber;
+
+    private Integer creditCardNumber;
+
+    public Integer getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public void setCreditCardNumber(Integer creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public BookingForm() {
+    }
+
+    public BookingForm(int flight, int numberOfPersons, String customerFirstName, String customerLastName, String customerEmail, Integer customerPhoneNumber, Integer creditCardNumber) {
         this.flight = flight;
-        this.customer = customer;
         this.numberOfPersons = numberOfPersons;
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
+        this.customerEmail = customerEmail;
+        this.customerPhoneNumber = customerPhoneNumber;
+        this.creditCardNumber = creditCardNumber;
+    }
+
+
+    public String getCustomerFirstName() {
+        return customerFirstName;
+    }
+
+    public void setCustomerFirstName(String customerFirstName) {
+        this.customerFirstName = customerFirstName;
+    }
+
+    public String getCustomerLastName() {
+        return customerLastName;
+    }
+
+    public void setCustomerLastName(String customerLastName) {
+        this.customerLastName = customerLastName;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
+    public Integer getCustomerPhoneNumber() {
+        return customerPhoneNumber;
+    }
+
+    public void setCustomerPhoneNumber(Integer customerPhoneNumber) {
+        this.customerPhoneNumber = customerPhoneNumber;
     }
 
     public int getId() {
@@ -23,14 +81,6 @@ public class BookingResponse {
 
     public void setFlight(int flight) {
         this.flight = flight;
-    }
-
-    public long getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(int customer) {
-        this.customer = customer;
     }
 
     public int getNumberOfPersons() {

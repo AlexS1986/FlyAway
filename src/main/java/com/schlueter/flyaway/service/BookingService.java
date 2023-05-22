@@ -14,5 +14,6 @@ public interface BookingService {
     void deleteById(long id);
 
     @Transactional
-    void save(Booking booking);
+    Booking save(Booking booking);
+    
 }

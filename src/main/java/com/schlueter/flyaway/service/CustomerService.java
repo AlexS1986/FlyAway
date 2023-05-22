@@ -14,5 +14,5 @@ public interface CustomerService {
     void deleteById(long id);
 
     @Transactional
-    void save(Customer customer);
+    Customer save(Customer customer);
 }

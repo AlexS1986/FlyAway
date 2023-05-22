@@ -32,9 +32,6 @@
 		</thead>
 		
 		<tbody>
-			<a th:href="@{/admin/flights/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
-				Add Flight
-			</a>
 
 			<tr th:each="tempFlight : ${flights}">
 				<td th:text="${tempFlight.airline.shortName}" />

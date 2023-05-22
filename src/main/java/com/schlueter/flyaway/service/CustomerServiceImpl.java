@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -38,7 +39,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional
     @Override
-    public void save(Customer customer) {
-        customerRepository.save(customer);
+    public Customer save(Customer customer) {
+        if (customer.getId() == 0 ) {
+            // check if customer already exists
+            Optional<Customer> customerOpt =
+                    customerRepository.findByFirstNameAndLastNameAndEmail(
+                            customer.getFirstName(),
+                            customer.getLastName(),
+                            customer.getEmail());
+            if(customerOpt.isPresent()) {
+                // is already present -> set Id
+                customer.setId(customerOpt.get().getId());
+            }
+        }
+        return customerRepository.save(customer);
     }
 }

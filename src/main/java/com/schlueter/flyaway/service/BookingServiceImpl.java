@@ -30,7 +30,10 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-    public void save(Booking booking) {
-        bookingRepository.save(booking);
+    public Booking save(Booking booking) {
+        if(booking.getNumberOfPersons() < 1) {
+            throw new RuntimeException("The number of persons in a booking has to be larger than 1.");
+        }
+        return bookingRepository.save(booking);
     }
 }

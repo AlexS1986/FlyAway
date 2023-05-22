@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css}" />
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Booking Confirmation</h1>
+    <hr />
+
+    <h2>Customer Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>First Name:</strong> <span th:text="${booking.customer.firstName}"></span></p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Last Name:</strong> <span th:text="${booking.customer.lastName}"></span></p>
+        </div>
+    </div>
+
+    <h2>Flight Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Number of Passengers:</strong> <span th:text="${booking.numberOfPersons}"></span></p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Departure Date:</strong> <span th:text="${#temporals.format(booking.flight.departureDateTime, 'dd MMM yyyy hh:mm a')}"></span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Airline:</strong> <span th:text="${booking.flight.airline.name}"></span></p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Source Airport:</strong> <span th:text="${booking.flight.sourceAirport.name}"></span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Destination Airport:</strong> <span th:text="${booking.flight.destinationAirport.name}"></span></p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Total Price:</strong> <span th:text="${booking.numberOfPersons * booking.flight.ticketPrice}"></span></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p>Thank you for your booking!</p>
+        </div>
+    </div>
+</div>
+    <a th:href="@{/customer/flights/search}">Back to Search Flight</a>
+</body>
+
+</html>
