@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         //redirectAttributes.addAttribute("error", "true");
         //System.out.println("QueryString:!!!" + request.getQueryString());
 
-        return  "redirect:/customer/flights/search?paymentFailed";
+        return  "redirect:/customer/bookings/showBookingCustomerForm?flightId="+ex.getFligtId()+"&paymentFailed";
     }
 
     @ExceptionHandler(Exception.class)

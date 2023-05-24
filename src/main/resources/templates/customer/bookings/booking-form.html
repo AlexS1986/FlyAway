@@ -16,6 +16,11 @@
     <div class="container">
         <p class="h4 mb-4">Complete Booking</p>
 
+        <!-- Add the condition to display error message -->
+        <div th:if="${paymentFailed}" class="alert alert-danger" role="alert">
+            Payment Failed! Please try again.
+        </div>
+
         <form id="bookingForm" action="#" th:action="@{/customer/bookings/save}"
               th:object="${booking}" method="POST" >
 
@@ -70,7 +75,7 @@
 
     <script>
           document.getElementById("bookingForm").addEventListener("submit", function(event) {
-            var phoneField = document.getElementById("phoneField");
+            var phoneField = document.getElementById("phoneNumber");
             var phoneRegex = /^\d{1,}$/;
 
             if (!phoneRegex.test(phoneField.value)) {

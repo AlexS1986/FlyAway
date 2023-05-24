@@ -34,7 +34,7 @@ public class CustomerBookingController {
     }
 
     @GetMapping("showBookingCustomerForm")
-    public String showFormForBookingCustomer(@RequestParam("flightId") int flightId, Model model) {
+    public String showFormForBookingCustomer(@RequestParam("flightId") int flightId,@RequestParam(value = "paymentFailed", required = false) String paymentFailed, Model model) {
 
         BookingForm bookingForm = new BookingForm();
         bookingForm.setNumberOfPersons(1);
@@ -47,8 +47,10 @@ public class CustomerBookingController {
         Flight flight = flightService.findById(flightId);
         booking.setFlight(flight); */
 
+
         model.addAttribute("flightId", flightId);
         model.addAttribute("booking", bookingForm);
+        boolean paymentFailedBool = paymentFailed == null ? false : true;model.addAttribute("paymentFailed", paymentFailedBool);
         return "customer/bookings/booking-form";
     }
 
@@ -56,7 +58,6 @@ public class CustomerBookingController {
     public String saveBooking(@ModelAttribute("booking") BookingForm bookingForm, Model model) throws PaymentException {
         Flight flight = flightService.findById(bookingForm.getFlight());
 
-        // TODO check if customer already exists
         Customer customer = new Customer(
                 bookingForm.getCustomerFirstName(),
                 bookingForm.getCustomerLastName(),
@@ -64,12 +65,15 @@ public class CustomerBookingController {
                 String.valueOf(bookingForm.getCustomerPhoneNumber())
         );
         customer = customerService.save(customer);
-
         // TODO this needs to be a transaction
-        paymentService.conductPayment(
-                        bookingForm.getNumberOfPersons() * flight.getTicketPrice().doubleValue(),
-                                bookingForm.getCreditCardNumber()
-        );
+        try {
+            paymentService.conductPayment(
+                    bookingForm.getNumberOfPersons() * flight.getTicketPrice().doubleValue(),
+                    bookingForm.getCreditCardNumber());
+        } catch (PaymentException p) {
+            throw new PaymentException(p.getMessage(), flight.getId());
+        }
+
 
 
         // TODO make constructor call

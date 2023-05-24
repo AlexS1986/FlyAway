@@ -35,7 +35,7 @@ public class CustomerFlightController {
 
 
     @GetMapping("/search")
-    public String showFormForAdd(@RequestParam(value = "paymentFailed", required = false) String paymentFailed, Model model) {
+    public String showFormForAdd(Model model) {
         FlightSearchQuery flightQuery = new FlightSearchQuery();
         flightQuery.setId(0);
         model.addAttribute("flightQuery", flightQuery);
