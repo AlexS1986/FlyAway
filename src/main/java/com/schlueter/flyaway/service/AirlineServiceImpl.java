@@ -12,12 +12,12 @@ import java.util.List;
 public class AirlineServiceImpl implements AirlineService{
 
     private AirlineRepository airlineRepository;
-    private FlightRepository flightRepository;
+    //private FlightRepository flightRepository;
 
     @Autowired
-    public AirlineServiceImpl(AirlineRepository airlineRepository, FlightRepository flightRepository) {
+    public AirlineServiceImpl(AirlineRepository airlineRepository) {
         this.airlineRepository = airlineRepository;
-        this.flightRepository = flightRepository;
+        //this.flightRepository = flightRepository;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class AirlineServiceImpl implements AirlineService{
 
     @Override
     public void deleteById(long id) {
-        flightRepository.deleteFlightsByAirlineId(id);
+        //flightRepository.deleteFlightsByAirlineId(id);
         airlineRepository.deleteById(id);
     }
 }

@@ -59,15 +59,14 @@ public class CustomerFlightController {
                             }
                         })
                        .filter(f -> {
-                                    if(flightSearchQuery.getDepartureDate() != null) {
-                                        return f.getDepartureDateTime().getYear() == flightSearchQuery.getDepartureDate().getYear()
-                                                && f.getDepartureDateTime().getMonth() == flightSearchQuery.getDepartureDate().getMonth()
-                                                && f.getDepartureDateTime().getDayOfMonth() == flightSearchQuery.getDepartureDate().getDayOfMonth();
-                                    } else {
-                                        return true;
-                                    }
-                                }
-                        )
+                           if(flightSearchQuery.getDepartureDate() != null) {
+                               return f.getDepartureDateTime().getYear() == flightSearchQuery.getDepartureDate().getYear()
+                                       && f.getDepartureDateTime().getMonth() == flightSearchQuery.getDepartureDate().getMonth()
+                                       && f.getDepartureDateTime().getDayOfMonth() == flightSearchQuery.getDepartureDate().getDayOfMonth();
+                           } else {
+                               return true;
+                           }
+                       })
                         .filter(f -> {
                             if(flightSearchQuery.getSourceAirport() != 0) {
                                 return f.getSourceAirport().getId() == flightSearchQuery.getSourceAirport();

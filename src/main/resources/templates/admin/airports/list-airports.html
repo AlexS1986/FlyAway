@@ -45,7 +45,7 @@
 
 					<a th:href="@{/admin/airports/delete(airportId=${tempAirport.id})}"
 					   class="btn btn-danger btn-sm"
-					   onclick="if (!(confirm('Are you sure you want to delete this airport? This will also delete all flights from and to this airport.'))) return false">
+					   onclick="if (!(confirm('Are you sure you want to delete this airport? This will also delete all flights and bookings from and to this airport.'))) return false">
 						Delete
 					</a>
 				</td>

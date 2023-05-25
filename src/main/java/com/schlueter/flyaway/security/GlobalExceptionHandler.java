@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public String handleException(Exception ex) {
-        return "redirect:/home/?err";
+        return "redirect:/home?err";
     }
 
     // Add more exception handling methods for specific exceptions

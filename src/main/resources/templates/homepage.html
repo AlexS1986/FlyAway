@@ -4,19 +4,27 @@
     <title>FlyAway</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to FlyAway</h1>
+<div class="container">
+    <h1 class="mt-5">Welcome to FlyAway</h1>
 
-<div th:if="${error}" class="alert alert-danger" role="alert">
-    An error occured! Please try again.
+    <div th:if="${error}" class="alert alert-danger mt-4" role="alert">
+        An error occurred! Please try again.
+    </div>
+
+    <ul class="list-unstyled mt-4">
+        <li class="mb-2"><a th:href="@{/customer/flights/search}" class="btn btn-primary">Search Flight</a></li>
+        <li class="mb-2"><a th:href="@{/admin/}" class="btn btn-primary">Admin</a></li>
+    </ul>
 </div>
 
-<ul>
-    <li><a th:href="@{/customer/flights/search}">Search Flight</a></li>
-    <li><a th:href="@{/admin/}">Admin</a></li>
-</ul>
-
-
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-wvDp2zj8DHJJt6FeWox9+7cdK7Zojbm6ZGMpC5BndHTm+dyCId5eaeByOrQhuyko" crossorigin="anonymous"></script>
 </body>
 </html>

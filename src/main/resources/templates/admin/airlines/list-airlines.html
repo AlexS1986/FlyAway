@@ -45,7 +45,7 @@
 
 					<a th:href="@{/admin/airlines/delete(airlineId=${tempAirline.id})}"
 					   class="btn btn-danger btn-sm"
-					   onclick="if (!(confirm('Are you sure you want to delete this airline? This will also delete all flights by that airline.'))) return false">
+					   onclick="if (!(confirm('Are you sure you want to delete this airline? This will also delete all flights and bookings by that airline.'))) return false">
 						Delete
 					</a>
 				</td>

@@ -12,12 +12,10 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
-    private BookingRepository bookingRepository;
+    //private BookingRepository bookingRepository;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository,
-                               BookingRepository bookingRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.bookingRepository = bookingRepository;
     }
 
     @Override
@@ -33,7 +31,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteById(long id) {
-        bookingRepository.deleteBookingsByCustomerId(id);
         customerRepository.deleteById(id);
     }
 

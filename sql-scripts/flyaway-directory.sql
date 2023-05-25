@@ -65,9 +65,9 @@ CREATE TABLE `flight` (
   `departure_datetime` DATETIME NOT NULL,
   `ticket_price` DECIMAL(10, 2) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`source`) REFERENCES `airport` (`id`),
-  FOREIGN KEY (`destination`) REFERENCES `airport` (`id`),
-  FOREIGN KEY (`airline`) REFERENCES `airline` (`id`)
+  FOREIGN KEY (`source`) REFERENCES `airport` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`destination`) REFERENCES `airport` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`airline`) REFERENCES `airline` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -101,8 +101,8 @@ CREATE TABLE `booking` (
   `flight_id` INT NOT NULL,
   `number_of_persons` INT NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  FOREIGN KEY (`flight_id`) REFERENCES `flight` (`id`)
+  FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`flight_id`) REFERENCES `flight` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `booking` (`customer_id`, `flight_id`, `number_of_persons`)
