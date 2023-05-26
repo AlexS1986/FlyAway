@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Currency;
+
 @Controller
 @RequestMapping("/customer/bookings")
 public class CustomerBookingController {
@@ -74,8 +76,6 @@ public class CustomerBookingController {
             throw new PaymentException(p.getMessage(), flight.getId());
         }
 
-
-
         // TODO make constructor call
         Booking booking = new Booking();
         booking.setId(bookingForm.getId());
@@ -83,8 +83,15 @@ public class CustomerBookingController {
         booking.setCustomer(customer);
         booking.setNumberOfPersons(bookingForm.getNumberOfPersons());
         booking = bookingService.save(booking);
+        return "redirect:/customer/bookings?bookingId="+booking.getId();
+    }
 
+    @GetMapping("")
+    public String getBooking(@RequestParam("bookingId") int id, Model model) {
+        Booking booking = bookingService.findById(id);
         model.addAttribute("booking", booking);
+        Currency currency = Currency.getInstance("USD");
+        model.addAttribute("currency", currency);
         return "customer/bookings/booking-confirmation";
     }
 
